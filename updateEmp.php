@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "All fields are required!";
     } else {
         $stmt = $conn->prepare("UPDATE emp SET empname = ?, empmail = ?, salary = ?, dept = ? WHERE empid = ?");
-        $stmt->bind_param("ssisi", $empname, $empmail, $salary, $dept, $id);
+        $stmt->bind_param("ssdsi", $empname, $empmail, $salary, $dept, $id);
         if ($stmt->execute()) {
             $success = "Employee updated successfully!";
             header("Location: viewEmp.php");

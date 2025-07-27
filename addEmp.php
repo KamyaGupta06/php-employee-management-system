@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "All fields are required!";
     } else {
         $stmt = $conn->prepare("INSERT INTO emp (empname, empmail, salary, dept) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssis", $empname, $empmail, $salary, $dept);
+        $stmt->bind_param("ssds", $empname, $empmail, $salary, $dept);
 
         if ($stmt->execute()) {
             $success = "Employee added successfully!";
