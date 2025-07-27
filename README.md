@@ -93,6 +93,52 @@ http://localhost/php-employee-management-system/login.php
 ```
 ---
 
+## Default Admin Credentials
+
+For testing purposes, you can use the following admin credentials to log in:
+
+- Username: admin
+- Password: 123
+
+If you installed a fresh database, the admin registration page (`register.php`) will allow you to create the first admin account.
+
+---
+
+## Reset Admin Password
+
+If you forget the admin password, you can reset it manually using phpMyAdmin or any MySQL client.
+
+Since passwords are stored securely as hashes, you cannot just enter a plain password directly in the database.
+
+### Steps to reset the admin password:
+
+1. Generate a hashed password using PHP's `password_hash()` function. For example, run this PHP script once:
+
+    ```php
+    <?php
+    echo password_hash('your-new-password', PASSWORD_DEFAULT);
+    ?>
+    ```
+
+2. Copy the output hash string.
+
+3. In phpMyAdmin, run the following SQL query, replacing `<hashed_password>` with the copied hash:
+
+    ```sql
+    UPDATE user SET password = '<hashed_password>' WHERE username = 'admin';
+    ```
+
+4. Now you can log in using the username `admin` and the new password you set.
+
+---
+
+If you want to reset the password to `123` quickly, here is an example hashed password you can use:
+
+```sql
+UPDATE user SET password = '$2y$10$ZqjmYapKZzM/ykMEpHLGV.uDr90SSVRqY3yd9OhcY29cf1qp6KNxW' WHERE username = 'admin';
+```
+---
+
 ## 🗄️ Database Tables
 
 ### 1. `user` table (for admin login)
